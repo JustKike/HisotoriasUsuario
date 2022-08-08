@@ -13,7 +13,7 @@ require("../mongo_connection");
 //creamos la segunda prueba
 describe("Historias de Usuario", function () {
 
-    describe.skip("0 - La aplicacion contara con un sistema de roles de usuario.", function () {
+    describe.skip("0 - El administrador podrá crear un sistema de roles de usuario.", function () {
         
             it("Registro de Rol de administrador: ",async function () {
             await Role.create({
@@ -46,8 +46,7 @@ describe("Historias de Usuario", function () {
     });
     
     describe.skip("1 - Los usuarios que no estén registrados, podrán registrarse para poder acceder.", function () {
-        try{   
-            
+        try{  
             it("Registro de nueva cuenta: ",async function () {
                 await User.create({
                     username: "Zleyer",
@@ -99,7 +98,7 @@ describe("Historias de Usuario", function () {
         assert.strictEqual(nombreCompleto(usuario.nombre,usuario.email),`${usuario.nombre} ${usuario.email}`);
         });
 
-        it("Crear token de usuario: ", async function(){
+        it.skip("Crear token de usuario: ", async function(){
             User.findOne({ username:"jairc" }, function(err, user) {
                 if (err) throw err;
                 // generar token
@@ -109,7 +108,62 @@ describe("Historias de Usuario", function () {
                 // console.log(token);
             });
         });
+        
+    });
+    describe.skip("3 - El administrador podrá dar de alta y baja usuarios de nivel inferior.", function () {
+        const usernm = "jairc";//usuario admin
+        it("Alta de usuario: ",async function () {
+            const user = await User.findOne({username:usernm})
+            try{
+                if (user.roles == 'admin'){      
+                    await User.create({
+                        username: "anonimo",
+                        nombre: "Prueba",
+                        apellidos: "Usuario",
+                        email: "anonimo@mail.com",
+                        password: "1231234",
+                        roles: ['cliente']
+                    });
+                    return respuesta = true
+                }else{
+                    return respuesta = false
+                }
+            }finally{
+                assert.isTrue(respuesta);
+            }
+        });
+        it("Baja de usuarios: ", async function(){
+            const user = await User.findOne({username:usernm})
+            try{
+                if (user.roles == 'admin'){    
+                await User.deleteOne({username:'anonimo'});  
+                return respuesta = true;
+                }else{
+                    return respuesta = false;
+                }
+            }finally{
+                assert.isTrue(respuesta);
+                // console.log(respuesta);
+            }
+        });
 
+        it("Modifiacion de usuarios: ", async function(){
+            const user = await User.findOne({username:usernm})
+            const editar = 'zleyer'
+            const rol = 'admin'
+            try{
+                if (user.roles == 'admin'){    
+                await User.updateOne({username:editar},{$set: {roles:rol}});  
+                return respuesta = true;
+                }else{
+                    return respuesta = false;
+                }
+            }finally{
+                const sujeto = await User.findOne({username:editar})
+                assert.equal(sujeto.roles,rol);
+                // console.log(respuesta);
+            }
+        });
     });
 
 });

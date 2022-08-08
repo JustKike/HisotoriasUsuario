@@ -13,6 +13,17 @@ const usur1 = {
     ]
 }
 
+const anonimo = {
+        username: "anonimo",
+        nombre: "Prueba",
+        apellidos: "Usuario",
+        email: "anonimo@mail.com",
+        password: "1231234",
+        roles: [
+            'cliente'
+        ]
+}
+
 
 
 module.exports = {
