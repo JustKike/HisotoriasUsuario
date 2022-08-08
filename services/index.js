@@ -1,7 +1,7 @@
 const jwt = require('jwt-simple');
 const moment = require("moment");
 const mongoose = require("mongoose");
-const config = require('mongo_conenection');
+const config = require('../mongo_connection');
 
 function createToken (user) {
     const payload = {
@@ -12,4 +12,6 @@ function createToken (user) {
    return jwt.encode(payload, config.SECRET_TOKEN);
 }
 
-module.exports = createToken;
+secret = 'django-insecure-a_io%mlfbp!llr46laumxu=rqrp9z!q_%yp#x)m!k6v4(6mxcv'
+
+module.exports = createToken, secret;

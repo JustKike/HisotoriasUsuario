@@ -3,29 +3,22 @@ Historias de usuario
 
 1 - Los usuarios que no estén registrados, podrán registrarse para poder acceder.
 2 - Los usuarios podrán autenticarse para poder acceder.
-3 - El administrador podrá tener un nivel de acceso general para poder gestionar toda la aplicación.
-4 - El administrador podrá dar de alta, baja y modificación usuarios de nivel inferior.
-5 - El supervisor podrá consultar un dashboard de desempeño de las sucursales.
-6 - El supervisor podrá generar reportes de inventarios.
-7 - El supervisor podrá generar reportes de ventas.
-8 - Los reportes dispondrán de un sistema de búsqueda y filtrado por parámetros de conveniencia.
-9 - Los reportes deberán incluir datos de inventarios y ventas de todas las sucursales.
-10 - Los almacenistas podrán generar ítems en el inventario.
-11 - Los almacenistas podrán dar de baja ítems de inventario.
-12 - Los almacenistas podrán modificar datos de ítems de inventarios.
-13 - Los almacenistas podrán consultar reportes de inventarios.
-14 - El vendedor podrá consultar inventarios, para actualizar el catálogo.
-15 - El vendedor podrá consultar precios de los ítems.
-16 - El vendedor podrá dar de alta ítems de ventas.
-17 - El vendedor podrá modificar los datos de las ventas.
-18 - El vendedor podrá dar de baja ítems de las ventas.
-19 - Los clientes que no han iniciado sesión, podrán registrarse.
-20 - Los clientes que no han iniciado sesión, podrán autenticarse.
-21 - Los clientes podrán generar un perfil de usuario para promociones y descuentos.
-22 - Los clientes podrán ver su historial de compras en su perfil de usuario.
-23 - Los clientes tendrán acceso a un catálogo de libros.
-24 - Los clientes podrán consultar ítems en existencia en otras sucursales.
-25 - Podrán realizar búsquedas por filtrado de parámetros de conveniencia para mejorar la consulta.
-26 - Los clientes podrán realizar compras.
-27 - Podrán cancelar una compra dentro de la primera media hora.
-28 - Las distintas sucursales podrán integrar sus reportes de inventarios y ventas en un registro global. 
+3 - El administrador podrá dar de alta y baja usuarios de nivel inferior.
+4 - El administrador podrá registrar nuevas sucursales.
+5 - El supervisor podrá generar reportes.
+6 - Los reportes dispondrán de un sistema de búsqueda y filtrado por parámetros de conveniencia para facilitar la consulta de información.
+7 - Los almacenistas podrán generar libros en el inventario.
+8 - Los almacenistas podrán dar de baja libros del inventario.
+9 - Los almacenistas podrán modificar datos de libros en el inventario.
+10 - El vendedor podrá consultar inventarios, para actualizar el catálogo.
+11 - El vendedor podrá generar ventas.
+12 - El vendedor podrá modificar los datos de las ventas.
+13 - El vendedor podrá dar de baja ventas duplicadas o erróneas.
+14 - Los clientes podrán generar un perfil de usuario para promociones y descuentos.
+15 - Los clientes podrán ver su historial de compras en su perfil de usuario.
+16 - Los clientes podrán visualizar un listado de libros disponibles.
+17 - Los clientes podrán consultar detalles de libros (autor, fecha de publicación, ubicación, etc.).
+18 - Los clientes podrán realizar búsquedas por filtrado de parámetros de conveniencia para mejorar la consulta.
+19 - Los clientes podrán realizar compras.
+20 - Los clientes podrán cancelar una compra dentro de la primera media hora.
+
