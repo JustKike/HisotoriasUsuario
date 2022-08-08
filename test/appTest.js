@@ -4,7 +4,7 @@ const { expect } = require("chai");
 var sinon = require("sinon");
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
-const User = require("../app");
+const User = require("../Usuario");
 require("dotenv").config();
 require("../mongo_connection");
 //encriptar password
