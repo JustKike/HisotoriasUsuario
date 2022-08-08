@@ -166,5 +166,41 @@ describe("Historias de Usuario", function () {
         });
     });
 
+    describe.skip("4 - El administrador podrá registrar nuevas sucursales.", function () {});
+
+    describe.skip("5 - El supervisor podrá generar reportes.", function () {});
+
+    describe.skip("6 - Los reportes dispondrán de un sistema de búsqueda y filtrado por parámetros.", function () {});
+
+    describe.skip("7 - Los almacenistas podrán generar libros en el inventario", function () {});
+
+    describe.skip("8 - Los almacenistas podrán dar de baja libros del inventario", function () {});
+
+    describe.skip("9 - Los almacenistas podrán modificar datos de libros en el inventario", function () {});
+
+    describe.skip("10 - El vendedor podrá consultar inventarios, para actualizar el catálogo", function () {});
+
+    describe.skip("11 - El vendedor podrá generar ventas", function () {});
+
+    describe.skip("12 - El vendedor podrá modificar los datos de las ventas", function () {});
+
+    describe.skip("13 - El vendedor podrá dar de baja ventas duplicadas o erróneas", function () {});
+
+    describe.skip("14 - Los clientes podrán generar un perfil de usuario para promociones y descuentos", function () {});
+
+    describe.skip("15 - Los clientes podrán ver su historial de compras en su perfil de usuario", function () {});
+
+    describe.skip("16 - Los clientes podrán visualizar un listado de libros disponibles", function () {});
+
+    describe.skip("17 - Los clientes podrán consultar detalles de libros (autor, fecha de publicación, ubicación, etc.)", function () {});
+
+    describe.skip("18 - Los clientes podrán realizar búsquedas por filtrado de parámetros de los libros", function () {});
+
+    describe.skip("19 - Los clientes podrán realizar compras", function () {});
+
+    describe.skip("11 - El vendedor podrá generar ventas", function () {});
+
+    describe.skip("20 - Los clientes podrán cancelar una compra dentro de la primera media hora", function () {});
+
 });
 

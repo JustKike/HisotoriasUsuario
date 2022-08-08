@@ -1,3 +1,8 @@
+
+/* 
+
+SOLO ES UN BORRADOR
+
 require('dotenv').config();
 const { ObjectID } = require("bson");
 const { default: mongoose } = require("mongoose");
@@ -28,4 +33,6 @@ const anonimo = {
 
 module.exports = {
     usur1
-};
+}; 
+
+*/
