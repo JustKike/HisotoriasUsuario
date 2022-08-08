@@ -7,40 +7,57 @@ const { Schema } = mongoose;
 const User = require("../app");
 require("dotenv").config();
 require("../mongo_connection");
+//encriptar password
+const bcrypt = require("bcrypt");
+//repeticiones del algoritmo para encriptar
+const saltRounds = 10;
 
 //creamos la segunda prueba
 describe("Historias de Usuario", function () {
     describe("1 - Los usuarios que no estén registrados, podrán registrarse para poder acceder.", function () {
-        // before(async function () {
-        //     await User.create({
-        //         username: "enrique12",
-        //         nombre: "Enrique",
-        //         apellidos: "Cervantes",
-        //         email: "kike@mail.com",
-        //         password: "1231234",
-        //     });
-        //   });
-        it("Debe retornar el usuario creado: ", async function () {
-            let usuario = await User.findOne({username:"josel"});
-            
-            let nombreCompleto = function (nombre, apellidos) {
-              return `${nombre} ${apellidos}`;
-            };
-            assert.strictEqual(nombreCompleto(usuario.nombre,usuario.apellidos),`${usuario.nombre} ${usuario.apellidos}`);
-            // console.log(JSON.stringify(usuario,null, ' '));
-        });
-
+        try{
+            it("Registro de nueva cuenta: ",async function () {
+                await User.create({
+                    username: "kike",
+                    nombre: "Enrique",
+                    apellidos: "Cervantes",
+                    email: "kike@mail.com",
+                    password: "1231234",
+                    is_admin: false
+                });
+            });
+        }finally{
+            it("Nueva cuenta creada: ", async function () {
+                let usuario = await User.findOne({username:"kike"});
+                
+                let nombreCompleto = function (nombre, email) {
+                    return `${nombre} ${email}`;
+                };
+                assert.strictEqual(nombreCompleto(usuario.nombre,usuario.email),`${usuario.nombre} ${usuario.email}`);
+                // console.log(JSON.stringify(usuario,null, ' '));
+            });
+        }
     });
+
     describe("2 - Los usuarios podrán autenticarse para poder acceder.", function () {
         it("Autenticacion de usuario: ",  async function () {
-            const email = "zleyer@mail.com";
+            const usernm = "jairc";
             const password = "1231234";
-            let usuario = await User.findOne({email});
-            
-            let emailContraseña = function (email, contraseña) {
-              return `${email} ${contraseña}`;
-            };
-            assert.strictEqual(emailContraseña(email,usuario.password),`${usuario.email} ${usuario.password}`);
+            User.findOne({ username: usernm }, function(err, user) {
+                if (err) throw err;
+                // test a matching password
+                user.comparePassword(password, function(err, isMatch) {
+                    if (err) throw err;
+                    console.log('contraseña:', isMatch);
+                });
+            });
+        });
+        it("Usuario autenticado: ", async function () {
+            const usuario = await User.findOne({username:"jairc"});
+                let nombreCompleto = function (nombre, email) {
+                    return `${nombre} ${email}`;
+                };
+                assert.strictEqual(nombreCompleto(usuario.nombre,usuario.email),`${usuario.nombre} ${usuario.email}`);
         });
     });
 });
