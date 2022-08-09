@@ -19,11 +19,11 @@ const crearLibros = require("../data");
 //creamos la segunda prueba
 describe("Historias de Usuario", function () {
     describe.skip("Generamos algunos registros", function () {
-        before(async function () {
-            await crearUsuarios();
-            await crearSucursal();
-            await crearLibros();
-          });
+        it("Agregando registros: ",async function () {
+                await crearUsuarios();
+                await crearSucursal();
+                await crearLibros();
+        });
     });
     
     describe.skip("0 - El administrador podrá crear un sistema de roles de usuario.", function () {
@@ -219,22 +219,59 @@ describe("Historias de Usuario", function () {
 
     describe.skip("6 - Los reportes dispondrán de un sistema de búsqueda y filtrado por parámetros.", function () {});
 
-    describe("7 - Los almacenistas podrán generar libros en el inventario", function () {
-
+    describe.skip("7 - Los almacenistas podrán generar libros en el inventario", function () {
+        const usernm = "zuly90";//usuario almacenista
         it("Alta de Libro: ", async function () {
-            await Libro.create({
-                titulo: 'Don Quijote De La Mancha',
-                descripcion: 'Hace diez años la Asociación de Academias de la Lengua Española pensó este Quijote para todos. Hoy se reedita -en edición limitada- para conmemorar los 400 años de la muerte de su autor.',
-                paginas: 1380,
-                autor: 'Miguel de Cervantes',
-                Editorial: 'Penguin Random House',
-                localisacion:'62f1bdc8bc6a4f1af92473a8'
-            });
+            const user = await User.findOne({username:usernm})
+            try{
+                if (user.roles == 'almacenista'){
+                    try{
+                        await Libro.create({
+                            titulo: 'Don Quijote De La Mancha',
+                            descripcion: 'Hace diez años la Asociación de Academias de la Lengua Española pensó este Quijote para todos. Hoy se reedita -en edición limitada- para conmemorar los 400 años de la muerte de su autor.',
+                            paginas: 1380,
+                            autor: 'Miguel de Cervantes',
+                            Editorial: 'Penguin Random House',
+                            localisacion:'62f1bdc8bc6a4f1af92473a8'
+                        });
+                    }finally{
+                            return respuesta = true
+                        } 
+                }else{
+                    return respuesta = false
+                }
+            }finally{
+                assert.isTrue(respuesta);
+            }
         });
 
     });
 
-    describe.skip("8 - Los almacenistas podrán dar de baja libros del inventario", function () {});
+    describe.skip("8 - Los almacenistas podrán dar de baja libros del inventario", function () {
+        it("Baja de Libro: ", async function () {
+            const user = await User.findOne({username:usernm})
+            try{
+                if (user.roles == 'almacenista'){
+                    try{
+                        await Libro.create({
+                            titulo: 'Don Quijote De La Mancha',
+                            descripcion: 'Hace diez años la Asociación de Academias de la Lengua Española pensó este Quijote para todos. Hoy se reedita -en edición limitada- para conmemorar los 400 años de la muerte de su autor.',
+                            paginas: 1380,
+                            autor: 'Miguel de Cervantes',
+                            Editorial: 'Penguin Random House',
+                            localisacion:'62f1bdc8bc6a4f1af92473a8'
+                        });
+                    }finally{
+                            return respuesta = true
+                        } 
+                }else{
+                    return respuesta = false
+                }
+            }finally{
+                assert.isTrue(respuesta);
+            }
+        });
+    });
 
     describe.skip("9 - Los almacenistas podrán modificar datos de libros en el inventario", function () {});
 
