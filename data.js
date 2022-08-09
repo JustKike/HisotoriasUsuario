@@ -1,9 +1,9 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
-const User = require("../user.model");
-const Role = require('../rol.model');
-const Sucursal = require('../Sucursales.model');
-const Libro = require('../Libros.model');
+const User = require('./user.model');
+const Role = require('./rol.model');
+const Sucursal = require('./Sucursales.model');
+const Libro = require('./Libros.model');
 
 module.exports = async function crearUsuarios() {
     await User.create({

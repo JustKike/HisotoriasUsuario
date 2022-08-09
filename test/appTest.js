@@ -18,14 +18,14 @@ const crearLibros = require("../data");
 
 //creamos la segunda prueba
 describe("Historias de Usuario", function () {
-    //Generamos algunos registros
-    before.skip(async function () {
-        await crearUsuarios();
-        await crearSucursal();
-        await crearLibros();
-      });
+    describe.skip("Generamos algunos registros", function () {
+        before(async function () {
+            await crearUsuarios();
+            await crearSucursal();
+            await crearLibros();
+          });
+    });
     
-
     describe.skip("0 - El administrador podrá crear un sistema de roles de usuario.", function () {
         
             it("Registro de Rol de administrador: ",async function () {
