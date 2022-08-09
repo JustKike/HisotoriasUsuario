@@ -10,9 +10,21 @@ const Sucursal = require('../Sucursales.model');
 const Libro = require('../Libros.model');
 require("dotenv").config();
 require("../mongo_connection");
+//Registros
+const crearUsuarios = require("../data");
+const crearSucursal = require("../data");
+const crearLibros = require("../data");
+
 
 //creamos la segunda prueba
 describe("Historias de Usuario", function () {
+    //Generamos algunos registros
+    before.skip(async function () {
+        await crearUsuarios();
+        await crearSucursal();
+        await crearLibros();
+      });
+    
 
     describe.skip("0 - El administrador podrá crear un sistema de roles de usuario.", function () {
         
@@ -184,19 +196,9 @@ describe("Historias de Usuario", function () {
                     try{
                         await Sucursal.insertMany([
                             {
-                                name: "Sucursal 1",
-                                location: { type: "Point", coordinates: [ -73.97, 40.77 ]},
-                                category: "Libreria 1"
-                            },
-                            {
-                                name: "Sucursal 2",
-                                location: { type: "Point", coordinates: [ -73.9928, 40.7193 ]},
-                                category: "Libreria 2"
-                            },
-                            {
-                                name: "Sucursal 3",
-                                location: { type: "Point", coordinates: [ -73.9375, 40.8303 ]},
-                                category: "Libreria 3"
+                                name: "Sucursal 4",
+                                location: { type: "Point", coordinates: [ -73.98, 40.78 ]},
+                                category: "Libreria 4"
                             }
                         ]);
                     }finally{

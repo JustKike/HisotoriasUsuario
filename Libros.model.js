@@ -11,7 +11,7 @@ const libroSchema = new mongoose.Schema({
     descripcion: {type: String, unique: true, required: [true, "can't be blank"], index: true},
     paginas: Number,
     autor: String,
-    localisacion: {type: Schema.ObjectId, ref: 'Sucursal',autopopulate: true},
+    localisacion: {type: Schema.ObjectId, ref: 'Sucursal',autopopulate: true, default: null},
     reg_time: {type: Date, default: Date.now}
 },
 {
