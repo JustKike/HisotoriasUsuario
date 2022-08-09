@@ -134,7 +134,7 @@ describe("Historias de Usuario", function () {
     describe.skip("3 - El administrador podrá dar de alta y baja usuarios de nivel inferior.", function () {
         const usernm = "jairc";//usuario admin
         it("Alta de usuario: ",async function () {
-            const user = await User.findOne({username:usernm})
+            const user = await User.findOne({username:usernm});
             try{
                 if (user.roles == 'admin'){      
                     await User.create({
@@ -145,16 +145,16 @@ describe("Historias de Usuario", function () {
                         password: "1231234",
                         roles: ['cliente']
                     });
-                    return respuesta = true
+                    return respuesta = true;
                 }else{
-                    return respuesta = false
+                    return respuesta = false;
                 }
             }finally{
                 assert.isTrue(respuesta);
             }
         });
         it("Baja de usuarios: ", async function(){
-            const user = await User.findOne({username:usernm})
+            const user = await User.findOne({username:usernm});
             try{
                 if (user.roles == 'admin'){    
                 await User.deleteOne({username:'anonimo'});  
@@ -169,9 +169,9 @@ describe("Historias de Usuario", function () {
         });
 
         it("Modifiacion de usuarios: ", async function(){
-            const user = await User.findOne({username:usernm})
-            const editar = 'zleyer'
-            const rol = 'admin'
+            const user = await User.findOne({username:usernm});
+            const editar = 'zleyer';
+            const rol = 'admin';
             try{
                 if (user.roles == 'admin'){    
                 await User.updateOne({username:editar},{$set: {roles:rol}});  
@@ -180,9 +180,8 @@ describe("Historias de Usuario", function () {
                     return respuesta = false;
                 }
             }finally{
-                const sujeto = await User.findOne({username:editar})
+                const sujeto = await User.findOne({username:editar});
                 assert.equal(sujeto.roles,rol);
-                // console.log(respuesta);
             }
         });
     });
@@ -248,24 +247,16 @@ describe("Historias de Usuario", function () {
     });
 
     describe.skip("8 - Los almacenistas podrán dar de baja libros del inventario", function () {
+        const usernm = "zuly90";//usuario almacenista
         it("Baja de Libro: ", async function () {
-            const user = await User.findOne({username:usernm})
+            const user = await User.findOne({username:usernm});
+            const tituloD = 'Libro 1';
             try{
                 if (user.roles == 'almacenista'){
-                    try{
-                        await Libro.create({
-                            titulo: 'Don Quijote De La Mancha',
-                            descripcion: 'Hace diez años la Asociación de Academias de la Lengua Española pensó este Quijote para todos. Hoy se reedita -en edición limitada- para conmemorar los 400 años de la muerte de su autor.',
-                            paginas: 1380,
-                            autor: 'Miguel de Cervantes',
-                            Editorial: 'Penguin Random House',
-                            localisacion:'62f1bdc8bc6a4f1af92473a8'
-                        });
-                    }finally{
-                            return respuesta = true
-                        } 
+                    await Libro.deleteOne({titulo:tituloD});
+                    return respuesta = true;
                 }else{
-                    return respuesta = false
+                    return respuesta = false;
                 }
             }finally{
                 assert.isTrue(respuesta);
@@ -273,7 +264,25 @@ describe("Historias de Usuario", function () {
         });
     });
 
-    describe.skip("9 - Los almacenistas podrán modificar datos de libros en el inventario", function () {});
+    describe.skip("9 - Los almacenistas podrán modificar datos de libros en el inventario", function () {
+        const usernm = "zuly90";//usuario almacenista
+        it("Baja de Libro: ", async function () {
+            const user = await User.findOne({username:usernm});
+            const editar = 'Libro 2';
+            const nuevo = 'Este es el nuevo titulo';
+            try{
+                if (user.roles == 'almacenista'){    
+                await Libro.updateOne({titulo:editar},{$set: {titulo:nuevo}});  
+                return respuesta = true;
+                }else{
+                    return respuesta = false;
+                }
+            }finally{
+                const libro = await Libro.findOne({titulo:nuevo});
+                assert.equal(libro.titulo,nuevo);
+            }
+        });
+    });
 
     describe.skip("10 - El vendedor podrá consultar inventarios, para actualizar el catálogo", function () {});
 
