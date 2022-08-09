@@ -4,6 +4,18 @@ const User = require('./user.model');
 const Role = require('./rol.model');
 const Sucursal = require('./Sucursales.model');
 const Libro = require('./Libros.model');
+const Ventas = require('./Ventas.model');
+const Perfil = require('./Profile.model');
+const Compras = require('./Compras.model');
+
+// const { MongoClient } = require("mongodb");
+
+// mongoose.connect('mongodb://127.0.0.1:27017',(err, client) => {
+//   var db = client.db('libreria');
+//   const catal = db.collection('catalogo');
+//   module.exports = catal;
+// });
+
 
 module.exports = async function crearUsuarios() {
     await User.create({
@@ -27,13 +39,23 @@ module.exports = async function crearUsuarios() {
         ]
     });
     await User.create({
-        username: "livier",
+        username: "Zleyer",
+        nombre: "Joselu",
+        apellidos: "Ubieta",
+        email: "zleyer_viking@mail.com",
+        password: "1231234",
+        roles: [
+            'almacenista'
+        ]
+    });
+    await User.create({
+        username: "zuly90",
         nombre: "Zulay Livier",
         apellidos: "Cervantes",
         email: "livi_z@mail.com",
         password: "123456",
         roles: [
-            'vendedor'
+            'almacenista'
         ]
     });
     await User.create({
@@ -126,6 +148,102 @@ module.exports = async function crearLibros() {
   
     console.log("Libros generados");
   };
+
+  module.exports = async function crearMovimiento() {
+    //tipo de venta  sucursal 1
+    await Ventas.create({
+        libroId: '62f20f1efdb844efa0aab04b',
+        titulo: 'Don Quijote De La Mancha',
+        autor:'Miguel de Cervantes',
+        cantidad: 10,
+        sucursalId: '62f1bdc8bc6a4f1af92473a8',
+        usuarioId: '62f236b1a395cdf0fdba3573',
+        tipoVenta: 'Venta'
+    });
+    //Venta sucursal 1
+    await Ventas.create({
+        libroId: '62f2104a89bd8a1a86af0a66',
+        titulo: 'Este es el nuevo titulo',
+        autor:'Eliot Alderson',
+        cantidad: 20,
+        sucursalId: '62f1bdc8bc6a4f1af92473a8',
+        usuarioId: '62f236b1a395cdf0fdba3573',
+        tipoVenta: 'Venta'
+    });
+    //venta sucursal 2
+    await Ventas.create({
+        libroId: '62f2104a89bd8a1a86af0a6c',
+        titulo: 'Libro 3',
+        autor:'Darlin Alderson',
+        cantidad: 8,
+        sucursalId: '62f1bdc8bc6a4f1af92473a9',
+        usuarioId: '62f236b1a395cdf0fdba3573',
+        tipoVenta: 'Venta'
+    });
+     //venta sucursal 2
+     await Ventas.create({
+        libroId: '62f2104a89bd8a1a86af0a72',
+        titulo: 'Libro 4',
+        autor:'Darlin Alderson',
+        cantidad: 12,
+        sucursalId: '62f1bdc8bc6a4f1af92473a9',
+        usuarioId: '62f236b1a395cdf0fdba3573',
+        tipoVenta: 'Venta'
+    });
+    //venta sucursal 3
+    await Ventas.create({
+        libroId: '62f2104a89bd8a1a86af0a78',
+        titulo: 'Libro 5',
+        autor:'Tyrel Wellelick',
+        cantidad: 5,
+        sucursalId: '62f1bdc8bc6a4f1af92473aa',
+        usuarioId: '62f236b1a395cdf0fdba3573',
+        tipoVenta: 'Venta'
+    });
+    //Devolucion sucursal 3
+    await Ventas.create({
+        libroId: '62f2104a89bd8a1a86af0a78',
+        titulo: 'Libro 5',
+        autor:'Tyrel Wellelick',
+        cantidad: 2,
+        sucursalId: '62f1bdc8bc6a4f1af92473aa',
+        usuarioId: '62f236b1a395cdf0fdba3573',
+        tipoVenta: 'Devolucion'
+    });
+    //venta sucursal 3
+    await Ventas.create({
+        libroId: '62f2104a89bd8a1a86af0a7e',
+        titulo: 'Libro 6',
+        autor:'Tyrel Wellelick',
+        cantidad: 2,
+        sucursalId: '62f1bdc8bc6a4f1af92473aa',
+        usuarioId: '62f236b1a395cdf0fdba3573',
+        tipoVenta: 'Venta'
+    });
+  };
+
+  module.exports = async function agregarCarrito() {
+      await Compras.create({
+        libroId: '62f2104a89bd8a1a86af0a6c',
+        titulo: 'Libro 3',
+        autor: 'Darlin Alderson',
+        cantidad: 2,
+        precio: 500,
+        sucursalId: '62f1bdc8bc6a4f1af92473a9',
+        usuarioId: '62f180f608f7e48ed7120e49',
+        username:'jazzprincess'
+      });
+      await Compras.create({
+        libroId: '62f2104a89bd8a1a86af0a78',
+        titulo: 'Libro 5',
+        autor: 'Tyrel Wellelick',
+        cantidad: 1,
+        precio: 350,
+        sucursalId: '62f1bdc8bc6a4f1af92473aa',
+        usuarioId: '62f180f608f7e48ed7120e49',
+        username:'jazzprincess'
+      });
+  };
   
 
 
@@ -204,5 +322,12 @@ await Sucursal.insertMany([
             }
         ]);
 
+
+> db.users.insert([{"name": "Mauricio", "email": "mauricio@email.com"},{"name": "Patricio", "email": "patricio@email.com"}])
+> db.users.find({})
+{ "_id" : ObjectId("5c9ccc140aee604c4ab6cd06"), "name" : "Mauricio", "email" : "mauricio@email.com" }
+{ "_id" : ObjectId("5c9ccc140aee604c4ab6cd07"), "name" : "Patricio", "email" : "patricio@email.com" }
+
+https://es.stackoverflow.com/questions/249344/relaciones-entre-collections-mongo
 
 */

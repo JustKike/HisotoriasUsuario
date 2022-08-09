@@ -22,6 +22,6 @@ libroSchema.plugin(uniqueValidator, {message: 'is already taken.'});
 libroSchema.plugin(require('mongoose-autopopulate'));
 
 
-var Libro = mongoose.model('Libro', libroSchema);  
+var Libro = mongoose.model('Libro', libroSchema); 
 
 module.exports = mongoose.model('Libro',libroSchema);
