@@ -6,7 +6,7 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 const User = require("../user.model");
 const Role = require('../rol.model');
-const usur1 = require('../data')
+const Sucursal = require('../Sucursales.model');
 require("dotenv").config();
 require("../mongo_connection");
 
@@ -166,7 +166,43 @@ describe("Historias de Usuario", function () {
         });
     });
 
-    describe.skip("4 - El administrador podrá registrar nuevas sucursales.", function () {});
+    describe.skip("4 - El administrador podrá registrar nuevas sucursales.", function () {
+        const usernm = "jairc";//usuario admin
+        it("Alta de Sucursal: ",async function () {
+            const user = await User.findOne({username:usernm})
+            try{
+                if (user.roles == 'admin'){
+                    try{
+                        await Sucursal.insertMany([
+                            {
+                                name: "Sucursal 1",
+                                location: { type: "Point", coordinates: [ -73.97, 40.77 ]},
+                                category: "Libreria 1"
+                            },
+                            {
+                                name: "Sucursal 2",
+                                location: { type: "Point", coordinates: [ -73.9928, 40.7193 ]},
+                                category: "Libreria 2"
+                            },
+                            {
+                                name: "Sucursal 3",
+                                location: { type: "Point", coordinates: [ -73.9375, 40.8303 ]},
+                                category: "Libreria 3"
+                            }
+                        ]);
+                    }finally{
+                        return respuesta = true
+                    } 
+                }else{
+                    return respuesta = false
+                }
+            }finally{
+                assert.isTrue(respuesta);
+            }
+
+        });
+
+    });
 
     describe.skip("5 - El supervisor podrá generar reportes.", function () {});
 
