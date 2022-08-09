@@ -18,7 +18,7 @@ Historias de usuario
 15 - Los clientes podrán ver su historial de compras en su perfil de usuario.
 16 - Los clientes podrán visualizar un listado de libros disponibles.
 17 - Los clientes podrán consultar detalles de libros (autor, fecha de publicación, ubicación, etc.).
-18 - Los clientes podrán realizar búsquedas por filtrado de parámetros de conveniencia para mejorar la consulta.
+18 - Los clientes podrán realizar búsquedas por filtrado de parámetros de los libros.
 19 - Los clientes podrán realizar compras.
 20 - Los clientes podrán cancelar una compra dentro de la primera media hora.
 

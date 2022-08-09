@@ -7,6 +7,7 @@ const { Schema } = mongoose;
 const User = require("../user.model");
 const Role = require('../rol.model');
 const Sucursal = require('../Sucursales.model');
+const Libro = require('../Libros.model');
 require("dotenv").config();
 require("../mongo_connection");
 
@@ -98,7 +99,7 @@ describe("Historias de Usuario", function () {
         assert.strictEqual(nombreCompleto(usuario.nombre,usuario.email),`${usuario.nombre} ${usuario.email}`);
         });
 
-        it.skip("Crear token de usuario: ", async function(){
+        it("Crear token de usuario: ", async function(){
             User.findOne({ username:"jairc" }, function(err, user) {
                 if (err) throw err;
                 // generar token
@@ -108,6 +109,14 @@ describe("Historias de Usuario", function () {
                 // console.log(token);
             });
         });
+
+        it('Inicio de sesion erronea',async function(){
+            let usuario = "Administrador";
+            let password = "123457";
+            const existe = await User.findOne({usuario: usuario});            
+            assert.notEqual(existe.password,password);            
+        })
+
         
     });
     describe.skip("3 - El administrador podrá dar de alta y baja usuarios de nivel inferior.", function () {
@@ -208,7 +217,20 @@ describe("Historias de Usuario", function () {
 
     describe.skip("6 - Los reportes dispondrán de un sistema de búsqueda y filtrado por parámetros.", function () {});
 
-    describe.skip("7 - Los almacenistas podrán generar libros en el inventario", function () {});
+    describe("7 - Los almacenistas podrán generar libros en el inventario", function () {
+
+        it("Alta de Libro: ", async function () {
+            await Libro.create({
+                titulo: 'Don Quijote De La Mancha',
+                descripcion: 'Hace diez años la Asociación de Academias de la Lengua Española pensó este Quijote para todos. Hoy se reedita -en edición limitada- para conmemorar los 400 años de la muerte de su autor.',
+                paginas: 1380,
+                autor: 'Miguel de Cervantes',
+                Editorial: 'Penguin Random House',
+                localisacion:'62f1bdc8bc6a4f1af92473a8'
+            });
+        });
+
+    });
 
     describe.skip("8 - Los almacenistas podrán dar de baja libros del inventario", function () {});
 

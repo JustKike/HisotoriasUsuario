@@ -7,7 +7,7 @@ var uniqueValidator = require('mongoose-unique-validator');
 const jwt = require('jsonwebtoken');
 const secret = require('./services').secret;
 var Schema = mongoose.Schema;
-var Role = mongoose.model('Role')
+var Role = mongoose.model('Role');
 // const Role = require("../rol.model");
 //encriptar password
 const bcrypt = require("bcrypt");
